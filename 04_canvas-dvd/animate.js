@@ -52,12 +52,12 @@ document.getElementById("dvd").addEventListener("click",()=>{
 	var dvd=()=>{
 		id=window.requestAnimationFrame(dvd);
 		clear();
-		ctx.drawImage(logo,rectX,rectY,100,100);
+		ctx.drawImage(logo,rectX,rectY,rectWidth,rectHeight);
 		rectX+=xVel;
 		rectY+=yVel;
-		if(rectX<=0||rectX>=c.width-100)
+		if(rectX<=0||rectX>=c.width-rectWidth)
 			xVel*=-1;
-		if(rectY<=0||rectY>=c.width-100)
+		if(rectY<=0||rectY>=c.width-rectHeight)
 			yVel*=-1;
 	};
 	dvd();
