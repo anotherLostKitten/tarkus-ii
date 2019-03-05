@@ -8,7 +8,7 @@ import json
 
 SERVER_ADDR = "jayy.mooo.com"
 connection = pymongo.MongoClient(SERVER_ADDR)
-db = connection.test
+db = connection.computerInteraction
 collection = db.movies
 
 f=open("movies.json","r")

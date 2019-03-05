@@ -1,4 +1,4 @@
-# Team Team maeT Team, Say hello. -- Theodore Peters & Mai Rachelevsky
+# Team computerInteraction -- Theodore Peters & Mai Rachelevsky
 # Sotdev pd7
 # K07 -- mongo to the polls that you created yoruself with a pymonWOAH script
 # 2019-03-05
@@ -7,9 +7,10 @@ import pymongo
 
 SERVER_ADDR = "jayy.mooo.com"
 connection = pymongo.MongoClient(SERVER_ADDR)
-db = connection.test
+db = connection.computerInteraction
 collection = db.movies
 
+# moovies (wikipedia's movie info: names, genres, cast, year of release): https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json
 # import method:
 # run that.py
 # which parses json file and into a python obj and adds all that data to mongo collection
