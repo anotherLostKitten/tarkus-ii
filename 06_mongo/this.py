@@ -5,7 +5,7 @@
 
 import pymongo
 
-SERVER_ADDR = "127.168.0.1"
+SERVER_ADDR = "jayy.mooo.com"
 connection = pymongo.MongoClient(SERVER_ADDR)
 db = connection.test
 collection = db.restaurants
@@ -17,12 +17,12 @@ def zipcode(z):
 def zipcode_grade(z,grade):
     return tuple(i["name"]for i in db.restaurants.find({"$and":[{"address.zipcode":z},{"grades.grade":grade}]}))
 def zipcode_thresh(z,thresh):
-    return tuple(i["name"]for i in db.restaurants.find({"$and":[{"address.zipcode":z},{"$lt":["grades.score",thresh]}]}))
+    return tuple(i["name"]for i in db.restaurants.find({"$and":[{"address.zipcode":z},{"grades.score":{"$lt":thresh}}]}))
 def avg_score(thresh):
-    return tuple(i["name"]for i in db.restaurants.find({"$gte":[{"$divide":[{"$reduce":{"input":"grades.score","initialValue":0,"in":{"$add":["$$value.sum","$$this"]}}},{"$size":"grades"}]},thresh]}))
+    return tuple(i["name"]for i in db.restaurants.find({"$expr":{"$gte":[{"$divide":[{"$reduce":{"input":"grades.score","initialValue":0,"in":{"$add":["$$value.sum","$$this"]}}},{"$size":"grades.score"}]},thresh]}}))
 if __name__=="__main__":
     print(burrow("Brooklyn"))
-    print(zipcode(11215))
-    print(zipcode_grade(11215,"B"))
-    print(zipcode_thresh(11215,15))
+    print(zipcode(10282))
+    print(zipcode_grade(10282,"B"))
+    print(zipcode_thresh(10282,15))
     print(avg_score(15))
