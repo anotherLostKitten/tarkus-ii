@@ -1,20 +1,29 @@
-# Team -- Theodore Peters & Mai Rachelevsky
+# Team Team maeT Team, Say hello. -- Theodore Peters & Mai Rachelevsky
 # Sotdev pd7
-# K06 -- mongo to the polls
-# 2019-02-28
+# K07 -- mongo to the polls that you created yoruself with a pymonWOAH script
+# 2019-03-05
 
 import pymongo
 
 SERVER_ADDR = "jayy.mooo.com"
 connection = pymongo.MongoClient(SERVER_ADDR)
 db = connection.test
-collection = db.restaurants
+collection = db.movies
+
+# import method:
+# run that.py
+# which parses json file and into a python obj and adds all that data to mongo collection
 
 def title(t):
-    return collection.find({'title': t})
-
+    return[(i["title"],i["year"],i["cast"],i["genres"])for i in collection.find({'title': t})]
 def year(y):
-    return collection.find({'year': y})
-          
-def genreAndActor(genre, actor):
-    return collection.find({ '$and': [ {"genres": genre}, {"cast": actor} ]})
+    return[(i["title"],i["year"],i["cast"],i["genres"])for i in collection.find({'year': y})]
+def actor(a):
+    return[(i["title"],i["year"],i["cast"],i["genres"])for i in collection.find({"cast": a})]
+def genreAndActor(a, g):
+    return[(i["title"],i["year"],i["cast"],i["genres"])for i in collection.find({ '$and': [ {"genres": g}, {"cast": a} ]})]
+
+print(title("Brazen Beauty"))
+print(year(1918))
+print(actor("Harold Lloyd"))
+print(genreAndActor("Harold Lloyd","Comedy"))
