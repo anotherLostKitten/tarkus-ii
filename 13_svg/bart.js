@@ -5,5 +5,5 @@ var chart=d3.select(".chart").attr("width",width).attr("height",barHeight*data.l
 var bar=chart.selectAll("g").data(data).enter().append("g").attr("transform",(d,i)=>{return"translate(0,"+i*barHeight+")";}); // appends svg container "g" to chart for all the values d, indecies i in data
 // bar is a selection of all the "g"s
 bar.append("rect").attr("width",x).attr("height",barHeight-1); // appends a rectangle to all of the g's with scale function to get width
-bar.append("text").attr("x",function(d){return x(d)-3;}).attr("y",barHeight/2).attr("dy",".35em").text(function(d){return d;}); // adds text to all the g;s near the right side by setting x&y vals
+bar.append("text").attr("x",(d)=>{return x(d)-3;}).attr("y",barHeight/2).attr("dy",".35em").text((d)=>{return d;}); // adds text to all the g;s near the right side by setting x&y vals
 // tsv files were not loading as an array but iterating through each element of the tsv for some reason i don;t know why and could find no documentation relating to this but also it seemed extra to making the bar chart so i didn't really pursue it further.
